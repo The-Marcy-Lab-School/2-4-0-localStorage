@@ -1,5 +1,13 @@
 # 2-3-1-localStorage-f23
 
+**Table of Contents**
+- [What is localStorage?](#what-is-localstorage)
+- [Setting and Getting Values](#setting-and-getting-values)
+- [toString() vs. JSON.stringify()](#tostring-vs-jsonstringify)
+- [Stringify and Parse](#stringify-and-parse)
+- [`localStorage` Helpers](#localstorage-helpers)
+- [Data Layer](#data-layer)
+
 ## What is localStorage?
 
 The `localStorage` interface allows you to store data across browser sessions.
