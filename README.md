@@ -170,7 +170,7 @@ const getLocalStorageKey = (key) => {
 
 // These two will be used by the rest of the functions a lot
 export const getNames = () => getLocalStorageKey('names');
-export const setNames = (names) => getLocalStorageKey('names', names);
+export const setNames = (names) => setLocalStorageKey('names', names);
 
 // More helper functions
 export const initializeNames = () => setNames(['ben', 'gonzalo', 'motun']);
