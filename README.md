@@ -19,17 +19,6 @@ It is an Object that is available on the `window` (it is globally available) and
 - `localStorage.removeItem(key)`
 - `localStorage.clear()`
 
-## Why Use It?
-
-`localStorage` will enable us to build a fully functional app, whose data will be unique to each user!
-
-Using `localStorage`, we will build a **data layer** that is used to inform what is rendered, know as the **view layer**. When users interact with the view through the form, the data layer will be updated and we re-render the view. 
-
-This cycle of **data > view > handle events > data** looks like this:
-
-![](data-layer-diagram.gif)
-
-
 ## Setting and Getting Values
 
 Storing data in a user's `localStorage` is like storing data in an Object. Every **value** we store is associated with a **key**.
@@ -217,3 +206,9 @@ Sure, we can interact with `localStorage` outside of this file too but we should
 </details><br>
 
 That file acts as a **data layer**. We might also decide to isolate our DOM manipulation code and create a **DOM layer** or create an **event handling layer**.
+
+Using `localStorage`, we will build a **data layer** that is used to inform what is rendered, know as the **view layer**. When users interact with the view through the form, the data layer will be updated and we re-render the view. 
+
+This cycle of **data > view > handle events > data** looks like this:
+
+![](data-layer-diagram.gif)
