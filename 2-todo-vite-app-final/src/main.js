@@ -1,5 +1,6 @@
 import './style.css';
 import { v4 as uuidv4 } from 'uuid';
+import { testLocalStorage } from './test-data-layer.js';
 import {
   getAllTodos,
   initializeTodosIfEmpty,
@@ -7,6 +8,18 @@ import {
   toggleTodoComplete,
   deleteTodo
 } from './data-layer-utils.js';
+
+const renderTodos = () => {
+  const todos = getAllTodos();
+  const todoList = document.querySelector("#todos-list");
+  todoList.innerHTML = "";
+
+  todos.forEach((todo) => {
+    const li = document.createElement('li');
+    li.textContent = todo.todoTitle;
+    todoList.append(li);
+  });
+}
 
 // helper functions
 const handleSubmit = (e) => {
@@ -22,11 +35,12 @@ const handleSubmit = (e) => {
   newTodo.uuid = uuidv4();
 
   console.log('here is your data:', newTodo);
-  // do something with formObj data...
 
-  document.querySelector("#todos-list").innerHTML += `
-    <li>${newTodo.todoTitle}</li>
-  `;
+  // Here we use the localStorage data layer method addTodo
+  addTodo(newTodo);
+
+  // And re-render
+  renderTodos()
 
   form.reset();
 }
@@ -36,31 +50,9 @@ const main = () => {
   const form = document.querySelector("#new-todo-form");
   form.addEventListener('submit', handleSubmit);
 
-  // Test the data layer:
-
+  // when we start the app, initialize the todos and render
   initializeTodosIfEmpty();
-  console.log('Default Todos:');
-  console.log(getAllTodos());
-  // confirm that default todos were added
-
-  addTodo({
-    uuid: 1,
-    title: 'trash',
-    isComplete: false
-  });
-  console.log('Todo Added:');
-  console.log(getAllTodos());
-  // confirm new todo was added
-
-  toggleTodoComplete(1);
-  console.log('Todo 1 Updated:');
-  console.log(getAllTodos());
-  // confirm todo isComplete is now true
-
-  deleteTodo(1);
-  console.log('Todo 1 deleted:');
-  console.log(getAllTodos());
-  // confirm todo was deleted
+  renderTodos();
 }
 
 main();
