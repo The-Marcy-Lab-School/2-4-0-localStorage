@@ -58,6 +58,20 @@ const stringifyAndParse = () => {
 }
 // stringifyAndParse();
 
+// These helper functions take care of stringifying and parsing for us!
+const setLocalStorageKey = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value))
+}
+
+const getLocalStorageKey = (key) => {
+  try {
+    return JSON.parse(localStorage.getItem(key))
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}
+
 const main = () => {
   
 }
