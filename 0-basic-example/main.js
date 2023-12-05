@@ -10,6 +10,7 @@ const basicLocalStorage = () => {
   console.log('storedNumber type: ', typeof storedNumber);  // string
   console.log('storedNumber type: ', typeof storedColor);   // string
 }
+// basicLocalStorage();
 
 const toStringVsStringify = () => {
   const num = 13
@@ -26,6 +27,7 @@ const toStringVsStringify = () => {
   console.log(JSON.stringify(arr)); // [1, 2, 3]
   console.log(JSON.stringify(obj)); // { name: 'ben' }
 }
+// toStringVsStringify();
 
 /* 
 Problem: only string values work with localStorage
@@ -42,18 +44,22 @@ const stringifyAndParse = () => {
   localStorage.setItem('instructors', JSON.stringify(instructors));
   localStorage.setItem('user', JSON.stringify(user));
 
-  // ...and JSON.parse() the value when we get it:
-  const storedInstructors = JSON.parse(localStorage.getItem('instructors'));
-  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedInstructors = localStorage.getItem('instructors');
+  const storedUser = localStorage.getItem('user');
 
   console.log('storedInstructors:', storedInstructors);
   console.log('storedUser:', storedUser);
+
+  const parsedInstructors = JSON.parse(localStorage.getItem('instructors'));
+  const parsedUser = JSON.parse(localStorage.getItem('user'));
+
+  console.log('parsedInstructors:', parsedInstructors);
+  console.log('parsedUser:', parsedUser);
 }
+// stringifyAndParse();
 
 const main = () => {
-  basicLocalStorage();
-  toStringVsStringify();
-  stringifyAndParse();
+  
 }
 
 main();
