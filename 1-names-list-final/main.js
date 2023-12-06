@@ -1,42 +1,21 @@
 import {
   getNames,
-  setNames,
   initializeNames,
-  addName,
-  removeName
 } from './local-storage.js';
 
-const renderNames = () => {
-  const names = getNames();
-  const list = document.querySelector('ul#names-list');
-  list.innerHTML = '';
-  names.forEach((name) => {
-    const li = document.createElement('li');
-    li.textContent = name;
-    list.append(li);
-  })
-}
-
-const handleSubmit = (e) => {
-  e.preventDefault();
-
-  const form = e.target;
-
-  const data = Object.fromEntries(new FormData(form));
-
-  addName(data.name);
-  renderNames();
-
-  form.reset();
-}
+import { renderNames } from './dom-utils.js';
+import { handleRemoveName, handleSubmit } from './event-handler-utils.js';
 
 const main = () => {
-  document.querySelector('form').addEventListener('submit', handleSubmit)
-
+  // the very first time the user loads this, add names to localStorage
   if (!getNames()) initializeNames();
 
+  // 1. render the existing names
   renderNames();
 
+  // 2. attach the form event handler
+  document.querySelector('form').addEventListener('submit', handleSubmit);
+  document.querySelector('ul').addEventListener('click', handleRemoveName);
 }
 
 main();
