@@ -211,4 +211,4 @@ Using `localStorage`, we will build a **data layer** that is used to inform what
 
 This cycle of **data > view > handle events > data** looks like this:
 
-![](data-layer-diagram.gif)
+![](data-layer-diagram.png)
