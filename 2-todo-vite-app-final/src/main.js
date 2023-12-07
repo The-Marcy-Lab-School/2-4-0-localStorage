@@ -1,13 +1,13 @@
 import './style.css';
 import { v4 as uuidv4 } from 'uuid';
-import { testLocalStorage } from './test-data-layer.js';
+import { testLocalStorage } from './data-layer/local-storage-test.js';
 import {
   getAllTodos,
   initializeTodosIfEmpty,
   addTodo,
   toggleTodoComplete,
   deleteTodo
-} from './data-layer-utils.js';
+} from './data-layer/local-storage.js';
 
 const renderTodos = () => {
   const todos = getAllTodos();

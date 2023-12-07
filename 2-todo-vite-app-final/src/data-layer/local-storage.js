@@ -32,17 +32,17 @@ export const getAllTodos = () => getLocalStorageKey('todos');
 // adds a new todo Object to the Array of todos in localStorage
 export const addTodo = (todo) => setTodos([...getAllTodos(), todo]);
 
+// finds a todo by uuid and removes it from the Array of todos
+export const deleteTodo = (uuid) => {
+  const todos = getAllTodos().filter((todo) => todo.uuid !== uuid);
+  setTodos(todos);
+};
+
 // finds a todo by uuid and replaces it with the given todo in localStorage
 export const toggleTodoComplete = (uuid) => {
   const todos = getAllTodos();
   const todoToUpdate = todos.find((todo) => todo.uuid === uuid);
   todoToUpdate.isComplete = !todoToUpdate.isComplete
-  setTodos(todos);
-};
-
-// finds a todo by uuid and removes it from the Array of todos
-export const deleteTodo = (uuid) => {
-  const todos = getAllTodos().filter((todo) => todo.uuid !== uuid);
   setTodos(todos);
 };
 
