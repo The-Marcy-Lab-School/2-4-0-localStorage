@@ -1,5 +1,14 @@
 import initialTodos from './todos.json';
 
+console.log(initialTodos)
+
+// - import the default list from todos.json
+// - put that default list in localStorage
+// - whenever I add/remove todos, I'm adding/removing
+// values from the localStorage array
+// - whenever the localStorage array changes, render
+// everything in localStorage
+
 //////////////////////////////////
 // Generic localStorage Helpers //
 //////////////////////////////////
@@ -29,24 +38,19 @@ export const setTodos = (todos) => setLocalStorageKey('todos', todos);
 // returns the Array of all todo Objects from localStorage
 export const getAllTodos = () => getLocalStorageKey('todos');
 
-// adds a new todo Object to the Array of todos in localStorage
-export const addTodo = (todo) => setTodos([...getAllTodos(), todo]);
-
-// finds a todo by uuid and removes it from the Array of todos
-export const deleteTodo = (uuid) => {
-  const todos = getAllTodos().filter((todo) => todo.uuid !== uuid);
-  setTodos(todos);
-};
-
-// finds a todo by uuid and replaces it with the given todo in localStorage
-export const toggleTodoComplete = (uuid) => {
-  const todos = getAllTodos();
-  const todoToUpdate = todos.find((todo) => todo.uuid === uuid);
-  todoToUpdate.isComplete = !todoToUpdate.isComplete
-  setTodos(todos);
-};
 
 // initializes todos using the todos.json file
 export const initializeTodosIfEmpty = () => {
-  if (!getAllTodos()) setTodos(initialTodos);
+  const existingTodos = getAllTodos();
+  if (!existingTodos) {
+    setTodos(initialTodos);
+    // setLocalStorageKey('todos', initialTodos)
+  }
 };
+
+// adds a new todo Object to the Array of todos in localStorage
+export const addTodo = (todo) => {
+  const existingTodos = getAllTodos();
+  const newTodosArray = [...existingTodos, todo];
+  setTodos(newTodosArray);
+}

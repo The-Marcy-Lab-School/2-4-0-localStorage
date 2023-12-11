@@ -10,10 +10,14 @@ import {
 } from './data-layer/local-storage.js';
 
 const renderTodos = () => {
+  // get all todos from localStorage
   const todos = getAllTodos();
+
+  // empty out the existing list
   const todoList = document.querySelector("#todos-list");
   todoList.innerHTML = "";
 
+  // re-render the ENTIRE localStorage list
   todos.forEach((todo) => {
     const li = document.createElement('li');
     li.textContent = todo.todoTitle;
@@ -31,15 +35,16 @@ const handleSubmit = (e) => {
   const formData = new FormData(form);
   const newTodo = Object.fromEntries(formData);
 
+  // add more properties to the newTodo object
   newTodo.isComplete = false;
   newTodo.uuid = uuidv4();
 
   console.log('here is your data:', newTodo);
 
-  // Here we use the localStorage data layer method addTodo
+  // Add newTodo to localStorage
   addTodo(newTodo);
 
-  // And re-render
+  // And re-render ALL of the todos that exist in localStorage
   renderTodos()
 
   form.reset();
