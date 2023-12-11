@@ -13,13 +13,4 @@ export const testLocalStorage = () => {
   console.log(getAllTodos());
   // confirm new todo was added
 
-  toggleTodoComplete(1);
-  console.log('Todo 1 Updated:');
-  console.log(getAllTodos());
-  // confirm todo isComplete is now true
-
-  deleteTodo(1);
-  console.log('Todo 1 deleted:');
-  console.log(getAllTodos());
-  // confirm todo was deleted
 }
