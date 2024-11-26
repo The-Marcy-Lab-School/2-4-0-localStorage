@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "vite-project",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^5.0.0",
-    "uuid": "^9.0.1"
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "uuid": "^11.0.3"
   }
 }

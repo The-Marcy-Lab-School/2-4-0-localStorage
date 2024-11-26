@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speed Clicker</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Speed Clicker</h1>
+      <button id="start">Start</button>
+      <div id="game-container">
+        <button id="clicker" data-clicks="0">0</button>
+        <p>Time Remaining: <span id="timer" data-time="0"></span> seconds</p>
+      </div>
+      <h2>Leaderboard</h2>
+      <ul id="leaderboard-list">
+      </ul>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

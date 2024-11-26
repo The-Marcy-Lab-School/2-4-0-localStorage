@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+button#clicker {
+  padding: 0.1rem 0.5rem;
+  /* border: 0; */
+}
+
+#game-container {
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  background: dodgerblue;
+  color: whitesmoke;
+  padding: 1rem;
+  width: fit-content;
+  border-radius: 10px;
+}
