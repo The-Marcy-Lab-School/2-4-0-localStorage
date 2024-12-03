@@ -1,6 +1,5 @@
 import {
   getNames,
-  setNames,
   initializeNames,
   addName,
   removeName
