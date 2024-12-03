@@ -1,5 +1,4 @@
 import startingTodos from './starting-todos.json';
-import { v4 as generateUUID } from 'uuid';
 
 const setLocalStorageKey = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value))
@@ -36,13 +35,7 @@ export const initializeTodosIfEmpty = () => {
   }
 }
 
-export const addTodo = (title) => {
-  // generate a todo object with a uuid
-  const newTodo = {
-    title,
-    uuid: crypto.randomUUID()
-  }
-
+export const addTodo = (newTodo) => {
   // get existing todos from localStorage
   const storedTodos = getTodos();
 
@@ -57,10 +50,7 @@ export const addTodo = (title) => {
 
 export const deleteTodoById = (uuid) => {
   const storedTodos = getTodos();
-  console.log(storedTodos)
-  console.log(uuid)
   delete storedTodos[uuid];
-  console.log(storedTodos)
   setTodos(storedTodos);
 }
 
@@ -68,18 +58,23 @@ export const deleteAllTodos = () => {
   setTodos([]);
 }
 
-// initializeTodosIfEmpty();
-// console.log(getTodos());
-// addTodo({
-//   uuid: "4190d04b-8f1d-44c9-b96b-1dabc127991e",
-//   title: "task 4"
-// })
-// addTodo({
-//   uuid: "5ceca102-6c65-46e7-9eeb-56dba0d25b9d",
-//   title: "task 5"
-// });
-// console.log(getTodos());
-// deleteTodoById("4190d04b-8f1d-44c9-b96b-1dabc127991e")
-// console.log(getTodos());
-// deleteTodoById("5ceca102-6c65-46e7-9eeb-56dba0d25b9d")
-// console.log(getTodos());
+const test = () => {
+  initializeTodosIfEmpty();
+  console.log(getTodos());
+  const todo1 = {
+    uuid: crypto.randomUUID(),
+    title: "task 4"
+  };
+  const todo2 = {
+    uuid: crypto.randomUUID(),
+    title: "task 5"
+  };
+  addTodo(todo1)
+  addTodo(todo2);
+  console.log(getTodos());
+  deleteTodoById(todo1.uuid);
+  console.log(getTodos());
+  deleteTodoById(todo2.uuid);
+  console.log(getTodos());
+}
+// test();

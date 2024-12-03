@@ -44,18 +44,20 @@ export const deleteAllTodos = () => {
 const test = () => {
   initializeTodosIfEmpty();
   console.log(getTodos());
-  addTodo({
+  const todo1 = {
     uuid: crypto.randomUUID(),
     title: "task 4"
-  })
-  addTodo({
+  };
+  const todo2 = {
     uuid: crypto.randomUUID(),
     title: "task 5"
-  });
+  };
+  addTodo(todo1)
+  addTodo(todo2);
   console.log(getTodos());
-  deleteTodoById("4190d04b-8f1d-44c9-b96b-1dabc127991e")
+  deleteTodoById(todo1.uuid);
   console.log(getTodos());
-  deleteTodoById("5ceca102-6c65-46e7-9eeb-56dba0d25b9d")
+  deleteTodoById(todo2.uuid);
   console.log(getTodos());
 }
 // test();

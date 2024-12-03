@@ -6,8 +6,14 @@ const handleTodoFormSubmit = (event) => {
   event.preventDefault();
   const form = event.target;
 
+  // create a new todo object with a uuid
+  const newTodo = {
+    title: form.todoTitle.value,
+    uuid: crypto.randomUUID()
+  }
+
   // add it to local storage
-  const newTodo = addTodo(form.todoTitle.value);
+  addTodo(newTodo);
 
   // add it to the DOM
   addTodoToList(newTodo);
