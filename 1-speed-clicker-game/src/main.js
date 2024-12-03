@@ -7,7 +7,8 @@ localStorage to make the data persist!
 */
 
 // Store the leaderboard "in memory"
-const leaderboard = [];
+// const leaderboard = [];
+
 // We'll need this for our timer
 let intervalId;
 
@@ -23,7 +24,13 @@ const updateLeaderboard = (leaderboard) => {
   leaderboardList.innerHTML = "";
 
   // Sort the given leaderboard in ascending order
-  leaderboard.sort((a, b) => a - b);
+  leaderboard.sort((a, b) => {
+    if (a > b) {
+      return -1; // a is put to the left of b
+    } else {
+      return 1; // a is put to the right of b
+    }
+  })
 
   // create a <li> for each score
   leaderboard.forEach(score => {
@@ -51,8 +58,18 @@ const tick = () => {
     // prevent clicking after the timer is done (we'll add the event listener when we start the game)
     clickerBtn.removeEventListener('click', handleClick);
 
+    // check to see if there is a leaderboard in localStorage
+    let leaderboard = JSON.parse(localStorage.getItem('leaderboard'));
+
+    // if there is no leaderboard in localStorage (only on the first game)
+    if (!leaderboard) {
+      leaderboard = [];
+    }
+
     // store the result in memory
     leaderboard.push(clickerBtn.dataset.clicks);
+
+    localStorage.setItem('leaderboard', JSON.stringify(leaderboard))
 
     // update the leaderboard display
     updateLeaderboard(leaderboard);
@@ -76,6 +93,11 @@ const restartGame = () => {
 
   // turn on the timer (save the intervalId so we can cancel it)
   intervalId = setInterval(tick, 1000);
+}
+
+let leaderboard = JSON.parse(localStorage.getItem('leaderboard'));
+if (leaderboard) {
+  updateLeaderboard(leaderboard)
 }
 
 // Set up the game each time the start button is clicked

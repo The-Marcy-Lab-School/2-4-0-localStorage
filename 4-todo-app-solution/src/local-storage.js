@@ -1,4 +1,4 @@
-import defaultTodos from './todo.json';
+import startingTodos from './starting-todos.json';
 import { v4 as generateUUID } from 'uuid';
 
 const setLocalStorageKey = (key, value) => {
@@ -32,20 +32,22 @@ export const getTodos = () => {
 export const initializeTodosIfEmpty = () => {
   const storedTodos = getTodos();
   if (!storedTodos || Object.keys(storedTodos).length === 0) {
-    setTodos(defaultTodos);
+    setTodos(startingTodos);
   }
 }
 
-export const addTodo = (newTodo) => {
-  // generate a uuid for the todo
-  const newUUUID = generateUUID();
-  newTodo.uuid = newUUUID;
+export const addTodo = (title) => {
+  // generate a todo object with a uuid
+  const newTodo = {
+    title,
+    uuid: crypto.randomUUID()
+  }
 
   // get existing todos from localStorage
   const storedTodos = getTodos();
 
-  // add the todo
-  storedTodos[newUUUID] = newTodo;
+  // update it with the new todo, using its uuid as the key
+  storedTodos[newTodo.uuid] = newTodo;
 
   // update localStorage
   setTodos(storedTodos);
@@ -60,6 +62,10 @@ export const deleteTodoById = (uuid) => {
   delete storedTodos[uuid];
   console.log(storedTodos)
   setTodos(storedTodos);
+}
+
+export const deleteAllTodos = () => {
+  setTodos([]);
 }
 
 // initializeTodosIfEmpty();

@@ -1,14 +1,14 @@
 {
   "db2d8d07-414e-47c4-b99b-4ff09b2c2e0e": {
     "uuid": "db2d8d07-414e-47c4-b99b-4ff09b2c2e0e",
-    "title": "Task 1"
+    "title": "Task 1: Fill out the form to add a new task"
   },
   "021e52fd-1829-44d6-af63-3828ff385fc5": {
     "uuid": "021e52fd-1829-44d6-af63-3828ff385fc5",
-    "title": "Task 2"
+    "title": "Task 2: Click on a task to delete it"
   },
   "52788c03-c19b-4ebe-b10d-4b4fdd08489e": {
     "uuid": "52788c03-c19b-4ebe-b10d-4b4fdd08489e",
-    "title": "Task 3"
+    "title": "Task 3: Delete all tasks to reset "
   }
 }

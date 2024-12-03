@@ -1,8 +1,4 @@
-// Data layer
-
-// Generic Helper Functions
-// Don't export these to restrict how the rest of the program
-// interacts with localStorage
+// Generic localStorage helpers
 const setLocalStorageKey = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value))
 }
@@ -16,21 +12,23 @@ const getLocalStorageKey = (key) => {
   }
 }
 
-// names-specific helper functions
-const setNames = (names) => setLocalStorageKey('names', names);
+// The remaining functions create an API for interacting with `localStorage`
 export const getNames = () => getLocalStorageKey('names');
 
-// names-specific functions used by the application
-export const initializeNames = () => setNames(['ben', 'gonzalo', 'motun']);
+export const initializeNames = () => setLocalStorageKey('names', ['ben', 'gonzalo', 'motun']);
 
 export const addName = (name) => {
   const names = getNames();
-  setNames([...names, name]);
+  names.push(name);
+  setLocalStorageKey('names', names);
 }
 
 export const removeName = (nameToRemove) => {
   const names = getNames();
   const filteredNames = names.filter((name) => name !== nameToRemove);
-  setNames(filteredNames);
+  setLocalStorageKey('names', filteredNames);
 }
 
+export const removeAllNames = () => {
+  setLocalStorageKey('names', []);
+}
