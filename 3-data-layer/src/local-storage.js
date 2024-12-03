@@ -1,3 +1,5 @@
+const defaultNames = ['ben', 'gonzalo', 'motun']
+
 // Generic localStorage helpers
 const setLocalStorageKey = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value))
@@ -15,7 +17,7 @@ const getLocalStorageKey = (key) => {
 // The remaining functions create an API for interacting with `localStorage`
 export const getNames = () => getLocalStorageKey('names');
 
-export const initializeNames = () => setLocalStorageKey('names', ['ben', 'gonzalo', 'motun']);
+export const initializeNames = () => setLocalStorageKey('names', defaultNames);
 
 export const addName = (name) => {
   const names = getNames();
