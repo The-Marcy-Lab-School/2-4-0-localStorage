@@ -1,12 +1,13 @@
 import {
   getNames,
-  initializeNames,
+  initializeNamesIfEmpty,
   addName,
   removeName
 } from './local-storage.js';
 
 // render whatever names are in localStorage
 const renderNames = () => {
+  // TODO:
   // grab the ul
   // empty the ul
   // get Array of names from localStorage
@@ -14,29 +15,44 @@ const renderNames = () => {
 }
 
 const handleSubmit = (e) => {
-  // prevent default
+  e.preventDefault();
+  const form = e.target;
 
-  // grab the form data
+  // TODO: Get the name value from the form
+  const nameValue = form.name.value;
 
-  // update localStorage
-  // re-render the whole list
+  // TODO: Replace this with functions from local-storage.js
+  const storedNames = JSON.parse(localStorage.getItem('names'));
+  storedNames.push(nameValue);
+  localStorage.setItem('names', JSON.stringify(storedNames));
 
-  // reset the form
+  renderNames(); // re-render the whole list
+  form.reset();
 }
 
-// delegation handler
 const handleRemoveName = (e) => {
+  // TODO: Determine which LI was clicked using event delegation
+  const nameToRemove = '';
 
+  // TODO: Replace this with functions from local-storage.js
+  const storedNames = JSON.parse(localStorage.getItem('names'));
+  const filteredNames = storedNames.filter((name) => name !== nameToRemove);
+  localStorage.setItem('names', JSON.stringify(filteredNames));
+
+  renderNames(); // re-render the whole list
 }
 
 const main = () => {
-  // the very first time the user loads this, add names to localStorage
-  if (!getNames()) initializeNames();
+  // TODO: Replace this with functions from local-storage.js
+  const storedNames = JSON.parse(localStorage.getItem('names'));
+  if (!storedNames) {
+    localStorage.setItem('names', JSON.stringify([]));
+  }
 
-  // 1. render the existing names
+  renderNames();
 
-  // 2. attach the form event handler
-
+  document.querySelector('form').addEventListener('submit', handleSubmit);
+  document.querySelector('ul').addEventListener('click', handleRemoveName)
 }
 
 main();

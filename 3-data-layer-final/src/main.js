@@ -1,6 +1,6 @@
 import {
   getNames,
-  initializeNames,
+  initializeNamesIfEmpty,
   addName,
   removeName
 } from './local-storage.js';
@@ -50,7 +50,7 @@ const handleRemoveName = (e) => {
 
 const main = () => {
   // the very first time the user loads this, add names to localStorage
-  if (!getNames()) initializeNames();
+  initializeNamesIfEmpty();
 
   // 1. render the existing names
   renderNames();

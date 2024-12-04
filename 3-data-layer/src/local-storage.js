@@ -17,7 +17,11 @@ const getLocalStorageKey = (key) => {
 // The remaining functions create an API for interacting with `localStorage`
 export const getNames = () => getLocalStorageKey('names');
 
-export const initializeNames = () => setLocalStorageKey('names', defaultNames);
+export const initializeNamesIfEmpty = () => {
+  if (!getNames()) {
+    setLocalStorageKey('names', defaultNames);
+  }
+}
 
 export const addName = (name) => {
   const names = getNames();
